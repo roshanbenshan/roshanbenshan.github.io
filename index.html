@@ -1051,9 +1051,9 @@
   <button class="float-btn print" onclick="window.print()">
     <i class="fas fa-file-pdf"></i> 导出PDF
   </button>
-  <a class="float-btn hire" href="javascript:void(0)" onclick="openWeChat()">
+  <button class="float-btn hire" id="hireBtn">
     <i class="fab fa-weixin"></i> 扫码加微信
-  </a>
+  </button>
 </div>
 
 <div class="resume">
@@ -1559,28 +1559,35 @@
 
 
   // ═══ 微信弹窗 ═══
-  function openWeChat() {
-    document.getElementById('wechatModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeWeChat() {
-    document.getElementById('wechatModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-  function closeWeChatOutside(e) {
-    if (e.target === e.currentTarget) closeWeChat();
-  }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeWeChat();
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('wechatModal');
+    var hireBtn = document.getElementById('hireBtn');
+    var closeBtn = document.getElementById('closeModalBtn');
+    function openWeChat() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWeChat() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    hireBtn.addEventListener('click', openWeChat);
+    closeBtn.addEventListener('click', closeWeChat);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeWeChat();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeWeChat();
+    });
   });
 
 </script>
 
 
 <!-- ═══ 微信弹窗 ═══ -->
-<div class="modal-overlay" id="wechatModal" onclick="closeWeChatOutside(event)">
+<div class="modal-overlay" id="wechatModal">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeWeChat()">&times;</button>
+    <button class="modal-close" id="closeModalBtn">&times;</button>
     <h3><i class="fab fa-weixin" style="color:#4a9eff"></i> 扫码添加微信</h3>
     <p>直接沟通，比邮件快得多</p>
     <div class="modal-qr">
