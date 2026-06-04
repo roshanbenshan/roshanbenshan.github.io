@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蔡梦杰 - 个人简历</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a2e;
+    background: #f0f2f5;
+    padding: 40px 20px;
+    line-height: 1.6;
+  }
+  .resume {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  /* ── 头部 ── */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    padding: 50px 60px 40px;
+  }
+  .header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .header .subtitle {
+    font-size: 16px;
+    opacity: 0.85;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .header .contact-row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  .header .contact-row span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header .badges {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #fff;
+  }
+
+  /* ── 主体 ── */
+  .body { padding: 40px 60px 50px; }
+
+  /* ── 求职意向栏 ── */
+  .intent-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .intent-table th, .intent-table td {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+  }
+  .intent-table th {
+    background: #f8f9fc;
+    color: #666;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .intent-table td:first-child { font-weight: 500; }
+  .intent-table .highlight-salary {
+    color: #e74c3c;
+    font-weight: 700;
+  }
+  .salary-note {
+    background: #fff7e6;
+    border-left: 4px solid #faad14;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #8c6e1a;
+    border-radius: 4px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+  }
+
+  /* ── 通用章节 ── */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #0f3460;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .icon { font-size: 20px; }
+
+  /* ── 能力矩阵 ── */
+  .skill-bar-group { margin-bottom: 6px; }
+  .skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+  .skill-bar-label .name { font-weight: 600; color: #1a1a2e; }
+  .skill-bar-label .years { color: #888; font-size: 13px; }
+  .skill-bar-track {
+    height: 8px;
+    background: #e8eaed;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #0f3460, #1a5276);
+  }
+  .skill-tags { margin-bottom: 20px; }
+  .skill-tag {
+    display: inline-block;
+    background: #eef2f7;
+    color: #1a1a2e;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin: 2px 3px;
+  }
+
+  .unique-value {
+    background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+    border: 1px solid #d0d8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+  }
+  .unique-value .fire { font-size: 18px; }
+  .unique-value p { font-size: 14px; color: #2c3e50; margin-top: 4px; }
+
+  /* ── 工作经历 ── */
+  .exp-item {
+    margin-bottom: 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .exp-header .company {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  .exp-header .role {
+    font-size: 14px;
+    color: #0f3460;
+    font-weight: 500;
+  }
+  .exp-header .date {
+    font-size: 13px;
+    color: #888;
+  }
+  .exp-header .salary {
+    font-size: 13px;
+    color: #e74c3c;
+    font-weight: 600;
+  }
+  .exp-desc {
+    font-size: 14px;
+    color: #444;
+    margin-left: 14px;
+    padding-left: 10px;
+    border-left: 2px solid #e0e0e0;
+  }
+  .exp-desc li {
+    margin-bottom: 3px;
+    list-style: none;
+    position: relative;
+    padding-left: 14px;
+  }
+  .exp-desc li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #0f3460;
+  }
+  .exp-note {
+    background: #f8f9fc;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #555;
+    margin-top: 6px;
+  }
+
+  /* ── 项目 ── */
+  .proj-item {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eee;
+  }
+  .proj-item:last-child { border-bottom: none; }
+  .proj-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .proj-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  .proj-role {
+    font-size: 13px;
+    color: #0f3460;
+    font-weight: 500;
+  }
+  .proj-date {
+    font-size: 13px;
+    color: #888;
+  }
+  .proj-desc {
+    font-size: 14px;
+    color: #444;
+    margin-top: 4px;
+  }
+  .proj-desc li {
+    margin-bottom: 2px;
+    list-style: none;
+    padding-left: 14px;
+    position: relative;
+  }
+  .proj-desc li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #0f3460;
+  }
+  .proj-result {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ── 技能区块 ── */
+  .skill-block {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .skill-block .col {
+    flex: 1;
+    min-width: 200px;
+  }
+  .skill-block .col h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f3460;
+    margin-bottom: 6px;
+  }
+  .skill-block .col .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .skill-block .col .tag-item {
+    background: #f0f4ff;
+    color: #1a1a2e;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    border: 1px solid #e0e6f0;
+  }
+
+  /* ── 教育 ── */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .edu-row:last-child { border-bottom: none; }
+  .edu-school { font-weight: 600; }
+  .edu-major { color: #555; }
+  .edu-degree { color: #0f3460; font-weight: 500; }
+  .edu-date { color: #888; }
+
+  /* ── 自我评价 ── */
+  .summary-text {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.8;
+  }
+  .summary-text .highlight {
+    background: #fff7e6;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #8c6e1a;
+  }
+
+  /* ── 语言 ── */
+  .lang-row {
+    display: flex;
+    gap: 30px;
+    font-size: 14px;
+  }
+  .lang-row span { color: #444; }
+  .lang-row .cert { color: #888; font-size: 13px; }
+
+  /* ── 页脚 ── */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #aaa;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  /* ── 打印优化 ── */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .resume { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge { background: rgba(255,255,255,0.15) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .skill-bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .unique-value { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .proj-result { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .salary-note { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { padding: 0; margin: 0; }
+    .body { padding: 30px 50px; }
+    .header { padding: 40px 50px 30px; }
+    .section { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 30px 20px; }
+    .body { padding: 25px 20px; }
+    .header .contact-row { flex-direction: column; gap: 6px; }
+    .exp-header { flex-direction: column; }
+    .skill-block { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="resume">
+
+  <!-- ═══ 头部 ═══ -->
+  <div class="header">
+    <h1>蔡梦杰</h1>
+    <div class="subtitle">ERP信息化专家 · 弱电智能化项目经理 · AI工具落地实践者</div>
+    <div class="contact-row">
+      <span>📞 180****2933</span>
+      <span>📧 25****46@qq.com</span>
+      <span>📍 云南·曲靖</span>
+      <span>🕐 在职-看机会</span>
+      <span>🏆 15年经验</span>
+    </div>
+    <div class="badges">
+      <span class="badge">信息系统项目管理师</span>
+      <span class="badge">用友ERP认证（财务+供应链）</span>
+      <span class="badge">曲靖合力2018优秀员工</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- ═══ 求职意向 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🎯</span> 求职意向</div>
+      <table class="intent-table">
+        <tr><th width="100">方向</th><th>职位</th><th width="140">期望薪资</th></tr>
+        <tr>
+          <td>信息化/数字化</td>
+          <td>运维工程师 / ERP实施顾问</td>
+          <td><span class="highlight-salary">8,000-12,000元/月</span></td>
+        </tr>
+        <tr>
+          <td>智能化工程</td>
+          <td>弱电/网络工程师</td>
+          <td>7,000-10,000元/月</td>
+        </tr>
+        <tr>
+          <td>AI应用开发</td>
+          <td>AI工具开发 / 视频剪辑师</td>
+          <td>6,000-10,000元/月</td>
+        </tr>
+      </table>
+      <div class="salary-note">
+        💡 <strong>建议薪资定位 8K-12K：</strong>15年经验+ERP+弱电+AI三合一能力在曲靖市场是稀缺资源，不要低估自己。
+      </div>
+    </div>
+
+    <!-- ═══ 能力矩阵 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">📊</span> 核心能力矩阵</div>
+
+      <div class="skill-bar-group">
+        <div class="skill-bar-label">
+          <span class="name">ERP信息化（用友/金蝶/OA）</span>
+          <span class="years">12年 · 10+项目</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-bar-group">
+        <div class="skill-bar-label">
+          <span class="name">弱电智能化（海康/大华/H3C/华为）</span>
+          <span class="years">10年 · 10+大型园区</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-bar-group">
+        <div class="skill-bar-label">
+          <span class="name">基础运维（Windows/Linux/网络）</span>
+          <span class="years">15年</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:98%"></div></div>
+      </div>
+      <div class="skill-bar-group">
+        <div class="skill-bar-label">
+          <span class="name">AI落地应用（ComfyUI/Ollama/Cursor）</span>
+          <span class="years">2年（前沿方向）</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-bar-group">
+        <div class="skill-bar-label">
+          <span class="name">云平台（IaaS/SaaS/PaaS）</span>
+          <span class="years">5年</span>
+        </div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+      </div>
+
+      <div class="skill-tags" style="margin-top:18px">
+        <span class="skill-tag">金蝶云星空</span>
+        <span class="skill-tag">用友U8/T6</span>
+        <span class="skill-tag">道一云OA</span>
+        <span class="skill-tag">WMS系统</span>
+        <span class="skill-tag">海康威视</span>
+        <span class="skill-tag">大华</span>
+        <span class="skill-tag">H3C</span>
+        <span class="skill-tag">华为</span>
+        <span class="skill-tag">深信服</span>
+        <span class="skill-tag">ComfyUI</span>
+        <span class="skill-tag">Stable Diffusion</span>
+        <span class="skill-tag">Ollama</span>
+        <span class="skill-tag">LobeChat</span>
+        <span class="skill-tag">OpenWebUI</span>
+        <span class="skill-tag">Cursor</span>
+        <span class="skill-tag">VS Code AI</span>
+        <span class="skill-tag">AD域控</span>
+        <span class="skill-tag">Linux(Ubuntu)</span>
+      </div>
+
+      <div class="unique-value">
+        <span class="fire">🔥</span> <strong>稀缺组合：ERP业务理解 + 弱电工程管理 + AI工具落地</strong>
+        <p>大部分IT人能管系统但不理解业务，大部分业务人不懂技术。你既懂企业核心流程（财务/供应链），又能管智能化弱电工程，还能用AI工具提效——这个三角在曲靖市场很难找到第二个人。</p>
+      </div>
+    </div>
+
+    <!-- ═══ 工作经历 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">💼</span> 工作经历</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="company">曲靖市启创信达商贸有限公司</span>
+          <span class="role">弱电项目经理</span>
+          <span class="date">2025.01 — 至今</span>
+          <span class="salary">5,000元/月</span>
+        </div>
+        <ul class="exp-desc">
+          <li>主导建筑智能化系统（安防监控、综合布线、楼宇自控）方案设计、图纸深化、预算编制，管理项目团队10人</li>
+          <li>建立风险预警机制，通过供应商谈判及材料选型优化节约成本，项目零重大事故</li>
+          <li>组织竣工验收，移交系统测试报告、操作手册，建立售后响应机制</li>
+          <li>制定《弱电施工安全规范》等8项制度，主导团队技能培训，提高验收合格率</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="company">曲靖跃安安全技术服务有限公司</span>
+          <span class="role">创业合伙人</span>
+          <span class="date">2024.01 — 2024.12</span>
+          <span class="salary">10,000元/月</span>
+        </div>
+        <ul class="exp-desc">
+          <li>独立负责公司全面运营管理、应收应付账款管理</li>
+          <li>制定招生计划与培训排期，优化学员考试通过率</li>
+          <li>开拓上游培训学校资源，拓展培训科目品类</li>
+          <li>管理下游招生团队，统筹培训考试政策宣传</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="company">曲靖合力</span>
+          <span class="role">ERP实施顾问</span>
+          <span class="date">约 2010 — 2023</span>
+        </div>
+        <div class="exp-note">
+          📌 12年ERP实施经验，累计10+个中大型项目实施交付。客户覆盖制造、商贸、财务、供应链、HR等多个领域。
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 重点项目 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🔧</span> 重点项目</div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">🏭 华祥科技 · ERP+WMS+OA 一体化项目</span>
+          <span class="proj-role">实施负责人</span>
+          <span class="proj-date">2023.11 — 至今</span>
+        </div>
+        <ul class="proj-desc">
+          <li>金蝶云星空ERP升级：需求调研→方案确定→数据整理→上线测试→运维</li>
+          <li>WMS系统：ERP接口需求梳理、实施费用预算编制</li>
+          <li>道一云OA开发：部门需求梳理、应用表单及流程设计、数据可视化模型设计</li>
+        </ul>
+        <span class="proj-result">✅ 物流运作效率提升20%</span>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">🏢 华祥科技 · 新能源建设FP弱电工程</span>
+          <span class="proj-role">甲方项目工程师</span>
+          <span class="proj-date">2023.06 — 至今</span>
+        </div>
+        <ul class="proj-desc">
+          <li>需求调研，优化设计方案</li>
+          <li>跟进施工质量与图纸一致性，优化不合理设计</li>
+          <li>控制项目成本，检查违规作业，签证确认变更</li>
+          <li>参与验收与结算</li>
+        </ul>
+        <span class="proj-result">✅ 成本较预算减少10%，较一期建设成本减少50%</span>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">🏛️ 富康城 · 艺术中心弱电建设</span>
+          <span class="proj-role">甲方项目工程师</span>
+          <span class="proj-date">2019.04 — 2019.12</span>
+        </div>
+        <ul class="proj-desc">
+          <li>需求调研→方案优化→过程跟进→成本控制→变更签证→验收结算</li>
+        </ul>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">🏭 陆良福牌彩印厂 · 用友U8财务供应链实施</span>
+          <span class="proj-role">ERP实施顾问</span>
+          <span class="proj-date">2013.12 — 2014.01</span>
+        </div>
+        <ul class="proj-desc">
+          <li>应用及数据库服务器安装、需求调研、原始数据导入与升级</li>
+          <li>会计科目设计、物料档案整理、报表设计、客户端配置</li>
+        </ul>
+        <span class="proj-result">✅ 打通部门数据穿透性，实现财务/采购/库存高效整合</span>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">⚡ 中翼鼎东白水电厂 · T6财务供应链实施</span>
+          <span class="proj-role">ERP实施顾问</span>
+          <span class="proj-date">2013.11 — 2013.12</span>
+        </div>
+        <ul class="proj-desc">
+          <li>服务器部署、需求调研、数据导入、会计科目设计、报表设计、客户端配置</li>
+        </ul>
+        <span class="proj-result">✅ 实现总部+分公司远程数据处理与财务数据远程监控</span>
+      </div>
+    </div>
+
+    <!-- ═══ 教育背景 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🎓</span> 教育背景</div>
+      <div class="edu-row">
+        <span class="edu-school">楚雄师范学院</span>
+        <span class="edu-major">信息与计算科学</span>
+        <span class="edu-degree">本科</span>
+        <span class="edu-date">2006.09 — 2010.07</span>
+      </div>
+    </div>
+
+    <!-- ═══ 专业技能 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🛠️</span> 专业技能</div>
+
+      <div class="skill-block">
+        <div class="col">
+          <h4>📋 企业信息化</h4>
+          <div class="tags">
+            <span class="tag-item">金蝶云星空</span>
+            <span class="tag-item">用友U8/T6</span>
+            <span class="tag-item">道一云OA</span>
+            <span class="tag-item">WMS系统</span>
+            <span class="tag-item">财务供应链HR</span>
+            <span class="tag-item">ERP实施方法论</span>
+          </div>
+        </div>
+        <div class="col">
+          <h4>🏗️ 弱电智能化</h4>
+          <div class="tags">
+            <span class="tag-item">海康威视</span>
+            <span class="tag-item">大华</span>
+            <span class="tag-item">H3C</span>
+            <span class="tag-item">华为</span>
+            <span class="tag-item">深信服</span>
+            <span class="tag-item">综合布线</span>
+            <span class="tag-item">安防监控</span>
+            <span class="tag-item">楼宇自控</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="col">
+          <h4>🌐 网络与基础架构</h4>
+          <div class="tags">
+            <span class="tag-item">交换机配置</span>
+            <span class="tag-item">防火墙</span>
+            <span class="tag-item">上网行为管理</span>
+            <span class="tag-item">AC+AP</span>
+            <span class="tag-item">AD域控</span>
+            <span class="tag-item">Windows Server</span>
+            <span class="tag-item">Linux(Ubuntu)</span>
+          </div>
+        </div>
+        <div class="col">
+          <h4>🤖 AI与前沿技术</h4>
+          <div class="tags">
+            <span class="tag-item">ComfyUI</span>
+            <span class="tag-item">Stable Diffusion</span>
+            <span class="tag-item">Ollama</span>
+            <span class="tag-item">LobeChat</span>
+            <span class="tag-item">OpenWebUI</span>
+            <span class="tag-item">Cursor</span>
+            <span class="tag-item">VS Code AI开发</span>
+            <span class="tag-item">LLM API调用</span>
+            <span class="tag-item">开源模型私有化部署</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 自我评价 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">📝</span> 自我评价</div>
+      <div class="summary-text">
+        15年信息化领域老兵，从ERP实施起步，一路扩展到弱电智能化工程管理，再到AI工具的落地应用。<br><br>
+        不是单纯的"运维"，而是一个<span class="highlight">能理解业务流程、能管工程、能用AI提效的复合型IT人</span>。<br><br>
+        我知道财务数据怎么跑、知道摄像头怎么装、知道大模型怎么部署——能把这些串起来解决实际问题的人，比单点专精的人稀缺得多。<br><br>
+        正在寻找一个能让我把 <span class="highlight">信息化+智能化+AI化</span> 三块能力都用上的平台。
+      </div>
+    </div>
+
+    <!-- ═══ 语言能力 ═══ -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🌐</span> 语言能力</div>
+      <div class="lang-row">
+        <span>汉语 — 听说读写熟练</span>
+        <span class="cert">普通话二级乙等</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    简历 · 蔡梦杰 · 更新于 2026年6月 &nbsp;|&nbsp; 打印版
+  </div>
+
+</div>
+
+</body>
+</html>
