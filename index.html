@@ -1051,7 +1051,7 @@
   <button class="float-btn print" onclick="window.print()">
     <i class="fas fa-file-pdf"></i> 导出PDF
   </button>
-  <button class="float-btn hire" id="hireBtn">
+  <button class="float-btn hire" id="hireBtn" onclick="openWeChatModal()">
     <i class="fab fa-weixin"></i> 扫码加微信
   </button>
 </div>
@@ -1559,25 +1559,27 @@
 
 
   // ═══ 微信弹窗 ═══
-  document.addEventListener('DOMContentLoaded', function() {
+  function openWeChatModal() {
     var modal = document.getElementById('wechatModal');
-    var hireBtn = document.getElementById('hireBtn');
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWeChatModal() {
+    var modal = document.getElementById('wechatModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
     var closeBtn = document.getElementById('closeModalBtn');
-    function openWeChat() {
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeWeChat() {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    hireBtn.addEventListener('click', openWeChat);
-    closeBtn.addEventListener('click', closeWeChat);
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) closeWeChat();
+    var modal = document.getElementById('wechatModal');
+    if (closeBtn) closeBtn.addEventListener('click', closeWeChatModal);
+    if (modal) modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeWeChatModal();
     });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeWeChat();
+      if (e.key === 'Escape') closeWeChatModal();
     });
   });
 
