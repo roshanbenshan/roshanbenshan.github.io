@@ -117,6 +117,16 @@
     position: relative;
     font-size: 32px;
     color: #4a9eff;
+    z-index: 1;
+  }
+  .avatar-ring .avatar-img {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
   }
   @keyframes avatarGlow {
     0%, 100% { background-position: 0% 50%; }
@@ -1062,7 +1072,7 @@
   <div class="header" id="top">
     <div class="header-content">
       <div class="avatar-ring">
-        <i class="fas fa-user-tie"></i>
+        <img src="avatar.jpg" alt="蔡梦杰" class="avatar-img">
       </div>
       <h1><span class="gradient-text">蔡梦杰</span></h1>
       <div class="typewriter-wrap">
