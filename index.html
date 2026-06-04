@@ -606,6 +606,22 @@
     border: 1px solid rgba(0, 200, 100, 0.15);
     color: #00c864;
   }
+  .proj-link {
+    font-size: 12px;
+    color: #4a9eff;
+    text-decoration: none;
+    padding: 2px 10px;
+    border: 1px solid rgba(74,158,255,0.3);
+    border-radius: 6px;
+    transition: all 0.3s;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+  .proj-link:hover {
+    background: rgba(74,158,255,0.15);
+    border-color: #4a9eff;
+    color: #80beff;
+  }
 
   /* ── 技能区块 ── */
   .skill-blocks {
@@ -1053,6 +1069,7 @@
   <a href="#skills"><i class="fas fa-chart-bar"></i><span class="tip">核心能力</span></a>
   <a href="#experience"><i class="fas fa-briefcase"></i><span class="tip">工作经历</span></a>
   <a href="#projects"><i class="fas fa-code-branch"></i><span class="tip">重点项目</span></a>
+  <a href="#opensource"><i class="fab fa-github"></i><span class="tip">开源作品</span></a>
   <a href="#contact"><i class="fas fa-envelope"></i><span class="tip">联系我</span></a>
 </div>
 
@@ -1339,6 +1356,62 @@
             <li>服务器部署、报表设计、远程数据打通</li>
           </ul>
           <span class="proj-result">🌐 总部+分公司远程</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ 开源作品 ═══ -->
+    <div class="section" id="opensource">
+      <div class="section-title"><i class="fab fa-github"></i> 开源作品</div>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">📈 futures-trader</span>
+            <a href="https://github.com/roshanbenshan/futures-trader" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+          <ul class="proj-desc">
+            <li>Binance合约自动交易系统 — 多因子评分选币，±6%止盈止损</li>
+            <li>全栈实盘交易引擎：多因子评分+选币+风控+Redis实时监控+Telegram推送</li>
+          </ul>
+          <span class="proj-result">🟢 已实盘运行</span>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🤖 open-webui</span>
+            <a href="https://github.com/roshanbenshan/open-webui" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+          <ul class="proj-desc">
+            <li>大语言模型交互界面（Ollama/OpenAI API），支持多种模型</li>
+            <li>Docker部署，即开即用</li>
+          </ul>
+          <span class="proj-result">📊 Star 积累中</span>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🌐 gemini-playground</span>
+            <a href="https://github.com/roshanbenshan/gemini-playground" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+          <ul class="proj-desc">
+            <li>Gemini多模态聊天网站，10秒一键部署</li>
+            <li>Serverless架构，零运维成本</li>
+          </ul>
+          <span class="proj-result">🚀 快速部署</span>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🔁 openai-gemini</span>
+            <a href="https://github.com/roshanbenshan/openai-gemini" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+          <ul class="proj-desc">
+            <li>Gemini ➜ OpenAI API 代理转换，Serverless 架构</li>
+            <li>兼容OpenAI SDK，无缝切换模型</li>
+          </ul>
+          <span class="proj-result">⚡ 零延迟代理</span>
         </div>
 
       </div>
