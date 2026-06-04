@@ -4,241 +4,460 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>蔡梦杰 - 个人简历</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
     color: #1a1a2e;
     background: #f0f2f5;
-    padding: 40px 20px;
-    line-height: 1.6;
-  }
-  .resume {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    overflow: hidden;
+    line-height: 1.7;
   }
 
-  /* ── 头部 ── */
-  .header {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: #fff;
-    padding: 50px 60px 40px;
+  /* ── 浮动导航 ── */
+  .nav-float {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
+  .nav-float a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+  }
+  .nav-float a:hover {
+    background: #0f3460;
+    color: #fff;
+    transform: scale(1.1);
+  }
+  .nav-float .tooltip {
+    display: none;
+    position: absolute;
+    right: 50px;
+    background: #1a1a2e;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .nav-float a:hover .tooltip { display: block; }
+
+  /* ── 打印按钮 ── */
+  .print-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 100;
+    background: #0f3460;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(15,52,96,0.3);
+    transition: all 0.3s;
+  }
+  .print-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(15,52,96,0.4);
+  }
+
+  /* ── 主容器 ── */
+  .resume {
+    max-width: 960px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══ 头部 ═══ */
+  .header {
+    background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 30%, #16213e 60%, #0f3460 100%);
+    color: #fff;
+    padding: 60px 70px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(100,149,237,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-content { position: relative; z-index: 1; }
   .header h1 {
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 3px;
     margin-bottom: 6px;
+    background: linear-gradient(90deg, #fff, #88c0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   .header .subtitle {
-    font-size: 16px;
+    font-size: 17px;
     opacity: 0.85;
-    font-weight: 400;
-    margin-bottom: 20px;
+    font-weight: 300;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
   }
-  .header .contact-row {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+  .header .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4a9eff, transparent);
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
     font-size: 14px;
     opacity: 0.9;
   }
-  .header .contact-row span {
+  .contact-grid .item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    padding: 6px 0;
   }
-  .header .badges {
-    margin-top: 16px;
+  .contact-grid .item i { width: 18px; color: #4a9eff; }
+  .badges {
+    margin-top: 18px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
   }
   .badge {
     display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 4px 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 16px;
     border-radius: 20px;
     font-size: 13px;
     color: #fff;
+    transition: all 0.3s;
   }
+  .badge:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
-  /* ── 主体 ── */
-  .body { padding: 40px 60px 50px; }
-
-  /* ── 求职意向栏 ── */
-  .intent-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 35px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .intent-table th, .intent-table td {
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-  }
-  .intent-table th {
-    background: #f8f9fc;
-    color: #666;
-    font-weight: 600;
-    font-size: 13px;
-  }
-  .intent-table td:first-child { font-weight: 500; }
-  .intent-table .highlight-salary {
-    color: #e74c3c;
-    font-weight: 700;
-  }
-  .salary-note {
-    background: #fff7e6;
-    border-left: 4px solid #faad14;
-    padding: 10px 16px;
-    font-size: 13px;
-    color: #8c6e1a;
-    border-radius: 4px;
-    margin-top: -20px;
-    margin-bottom: 30px;
-  }
+  /* ═══ 主体 ═══ */
+  .body { padding: 45px 70px 50px; }
 
   /* ── 通用章节 ── */
   .section {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+    animation: fadeIn 0.6s ease;
   }
   .section-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: #1a1a2e;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     border-bottom: 3px solid #0f3460;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    position: relative;
   }
-  .section-title .icon { font-size: 20px; }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4a9eff, transparent);
+  }
+  .section-title i { color: #0f3460; font-size: 22px; }
+
+  /* ── 求职意向卡片 ── */
+  .intent-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .intent-card {
+    background: linear-gradient(135deg, #f8f9fc, #eef2f7);
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid #e8ecf2;
+    transition: all 0.3s;
+  }
+  .intent-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+  .intent-card .dir { font-size: 13px; color: #888; margin-bottom: 2px; }
+  .intent-card .pos { font-size: 15px; font-weight: 600; color: #1a1a2e; }
+  .intent-card .sal {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-top: 4px;
+  }
+  .salary-note {
+    background: linear-gradient(135deg, #fff7e6, #fffbe6);
+    border: 1px solid #ffe58f;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 14px;
+    color: #8c6e1a;
+  }
+  .salary-note i { margin-right: 6px; color: #faad14; }
 
   /* ── 能力矩阵 ── */
-  .skill-bar-group { margin-bottom: 6px; }
+  .skill-bar-group {
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.5s ease forwards;
+  }
+  .skill-bar-group:nth-child(1) { animation-delay: 0.1s; }
+  .skill-bar-group:nth-child(2) { animation-delay: 0.2s; }
+  .skill-bar-group:nth-child(3) { animation-delay: 0.3s; }
+  .skill-bar-group:nth-child(4) { animation-delay: 0.4s; }
+  .skill-bar-group:nth-child(5) { animation-delay: 0.5s; }
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
   .skill-bar-label {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .skill-bar-label .name { font-weight: 600; color: #1a1a2e; }
   .skill-bar-label .years { color: #888; font-size: 13px; }
   .skill-bar-track {
-    height: 8px;
+    height: 10px;
     background: #e8eaed;
-    border-radius: 4px;
+    border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 8px;
+    position: relative;
   }
   .skill-bar-fill {
     height: 100%;
-    border-radius: 4px;
-    background: linear-gradient(90deg, #0f3460, #1a5276);
+    border-radius: 5px;
+    background: linear-gradient(90deg, #0f3460, #4a9eff, #6ab0ff);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease infinite;
+    width: 0;
+    transition: width 1.5s ease;
   }
-  .skill-tags { margin-bottom: 20px; }
+  @keyframes shimmer {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 0%; }
+    100% { background-position: 0% 0%; }
+  }
+  .skill-tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
   .skill-tag {
     display: inline-block;
-    background: #eef2f7;
+    background: linear-gradient(135deg, #eef2f7, #e4e9f0);
     color: #1a1a2e;
-    padding: 4px 12px;
-    border-radius: 4px;
+    padding: 5px 14px;
+    border-radius: 6px;
     font-size: 13px;
-    margin: 2px 3px;
+    border: 1px solid #dce0e8;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .skill-tag:hover {
+    background: linear-gradient(135deg, #0f3460, #1a5276);
+    color: #fff;
+    transform: translateY(-2px);
+    border-color: #0f3460;
   }
 
   .unique-value {
-    background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
-    border: 1px solid #d0d8f0;
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 25px;
+    background: linear-gradient(135deg, #e8f0fe, #f0f4ff);
+    border: 1px solid #c8d4f0;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
   }
-  .unique-value .fire { font-size: 18px; }
-  .unique-value p { font-size: 14px; color: #2c3e50; margin-top: 4px; }
+  .unique-value::before {
+    content: '🔥';
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    font-size: 60px;
+    opacity: 0.1;
+  }
+  .unique-value strong { color: #0f3460; }
+  .unique-value p { font-size: 14px; color: #2c3e50; margin-top: 6px; }
 
   /* ── 工作经历 ── */
-  .exp-item {
-    margin-bottom: 22px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #0f3460, #4a9eff, transparent);
   }
-  .exp-item:last-child { border-bottom: none; }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s;
+  }
+  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    background: #0f3460;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px #0f3460;
+  }
+  .timeline-item:hover { padding-left: 8px; }
   .exp-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     flex-wrap: wrap;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
-  .exp-header .company {
-    font-size: 16px;
+  .exp-company {
+    font-size: 17px;
     font-weight: 700;
     color: #1a1a2e;
   }
-  .exp-header .role {
+  .exp-role {
     font-size: 14px;
     color: #0f3460;
     font-weight: 500;
+    background: #e8f0fe;
+    padding: 2px 12px;
+    border-radius: 12px;
   }
-  .exp-header .date {
+  .exp-date {
     font-size: 13px;
     color: #888;
   }
-  .exp-header .salary {
-    font-size: 13px;
+  .exp-salary {
+    font-size: 14px;
     color: #e74c3c;
     font-weight: 600;
   }
   .exp-desc {
     font-size: 14px;
     color: #444;
-    margin-left: 14px;
-    padding-left: 10px;
-    border-left: 2px solid #e0e0e0;
+    margin-top: 6px;
+    padding-left: 16px;
   }
   .exp-desc li {
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     list-style: none;
     position: relative;
-    padding-left: 14px;
+    padding-left: 18px;
   }
   .exp-desc li::before {
-    content: "•";
+    content: '▸';
     position: absolute;
     left: 0;
-    color: #0f3460;
+    color: #4a9eff;
+    font-weight: bold;
   }
   .exp-note {
-    background: #f8f9fc;
-    padding: 10px 14px;
-    border-radius: 6px;
+    background: linear-gradient(135deg, #f8f9fc, #f0f2f7);
+    padding: 12px 18px;
+    border-radius: 8px;
     font-size: 14px;
     color: #555;
-    margin-top: 6px;
+    margin-top: 8px;
+    border-left: 3px solid #4a9eff;
   }
 
-  /* ── 项目 ── */
-  .proj-item {
-    margin-bottom: 22px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #eee;
+  /* ── 项目卡片 ── */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 18px;
   }
-  .proj-item:last-child { border-bottom: none; }
-  .proj-header {
+  .proj-card {
+    background: #fafbfc;
+    border: 1px solid #e8ecf2;
+    border-radius: 12px;
+    padding: 20px 22px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #0f3460, #4a9eff);
+    border-radius: 0 2px 2px 0;
+  }
+  .proj-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    border-color: #c8d4f0;
+  }
+  .proj-top {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     flex-wrap: wrap;
     margin-bottom: 4px;
   }
@@ -248,98 +467,143 @@
     color: #1a1a2e;
   }
   .proj-role {
-    font-size: 13px;
+    font-size: 12px;
     color: #0f3460;
-    font-weight: 500;
+    background: #e8f0fe;
+    padding: 1px 10px;
+    border-radius: 10px;
   }
   .proj-date {
-    font-size: 13px;
+    font-size: 12px;
     color: #888;
   }
   .proj-desc {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #444;
-    margin-top: 4px;
+    margin-top: 6px;
   }
   .proj-desc li {
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     list-style: none;
-    padding-left: 14px;
+    padding-left: 16px;
     position: relative;
   }
   .proj-desc li::before {
-    content: "•";
+    content: '•';
     position: absolute;
     left: 0;
-    color: #0f3460;
+    color: #4a9eff;
+    font-weight: bold;
   }
   .proj-result {
     display: inline-block;
-    background: #e8f5e9;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
     color: #2e7d32;
-    padding: 2px 10px;
-    border-radius: 4px;
+    padding: 3px 14px;
+    border-radius: 20px;
     font-size: 13px;
     font-weight: 500;
-    margin-top: 4px;
+    margin-top: 8px;
+    border: 1px solid #a5d6a7;
   }
 
   /* ── 技能区块 ── */
+  .skill-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
   .skill-block {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
+    background: #fafbfc;
+    border: 1px solid #e8ecf2;
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: all 0.3s;
   }
-  .skill-block .col {
-    flex: 1;
-    min-width: 200px;
+  .skill-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
   }
-  .skill-block .col h4 {
+  .skill-block h4 {
     font-size: 14px;
     font-weight: 600;
     color: #0f3460;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .skill-block .col .tags {
+  .skill-block .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 5px;
   }
-  .skill-block .col .tag-item {
-    background: #f0f4ff;
+  .skill-block .tag-item {
+    background: #fff;
     color: #1a1a2e;
-    padding: 3px 10px;
-    border-radius: 4px;
+    padding: 4px 12px;
+    border-radius: 6px;
     font-size: 13px;
     border: 1px solid #e0e6f0;
+    transition: all 0.2s;
+  }
+  .skill-block .tag-item:hover {
+    background: #0f3460;
+    color: #fff;
+    border-color: #0f3460;
   }
 
   /* ── 教育 ── */
-  .edu-row {
+  .edu-card {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    font-size: 14px;
-    padding: 8px 0;
-    border-bottom: 1px solid #f0f0f0;
+    background: linear-gradient(135deg, #f8f9fc, #eef2f7);
+    border-radius: 10px;
+    padding: 16px 22px;
+    border: 1px solid #e8ecf2;
   }
-  .edu-row:last-child { border-bottom: none; }
-  .edu-school { font-weight: 600; }
+  .edu-school { font-size: 16px; font-weight: 700; }
   .edu-major { color: #555; }
-  .edu-degree { color: #0f3460; font-weight: 500; }
-  .edu-date { color: #888; }
+  .edu-degree {
+    color: #0f3460;
+    font-weight: 600;
+    background: #e8f0fe;
+    padding: 2px 12px;
+    border-radius: 10px;
+  }
+  .edu-date { color: #888; font-size: 13px; }
 
   /* ── 自我评价 ── */
-  .summary-text {
-    font-size: 14px;
-    color: #444;
-    line-height: 1.8;
+  .summary-box {
+    background: linear-gradient(135deg, #f8f9fc 0%, #f0f4ff 100%);
+    border-radius: 12px;
+    padding: 22px 28px;
+    border: 1px solid #e0e6f0;
+    position: relative;
   }
-  .summary-text .highlight {
-    background: #fff7e6;
-    padding: 2px 6px;
-    border-radius: 3px;
+  .summary-box::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 60px;
+    color: #4a9eff;
+    opacity: 0.2;
+    font-family: Georgia, serif;
+  }
+  .summary-text {
+    font-size: 14.5px;
+    color: #444;
+    line-height: 2;
+    position: relative;
+    z-index: 1;
+  }
+  .summary-text .hl {
+    background: linear-gradient(135deg, #fff7e6, #fff3d6);
+    padding: 2px 8px;
+    border-radius: 4px;
     font-weight: 600;
     color: #8c6e1a;
   }
@@ -348,136 +612,170 @@
   .lang-row {
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
     font-size: 14px;
+    padding: 10px 0;
   }
-  .lang-row span { color: #444; }
+  .lang-row span { display: flex; align-items: center; gap: 6px; }
+  .lang-row i { color: #4a9eff; width: 18px; }
   .lang-row .cert { color: #888; font-size: 13px; }
 
   /* ── 页脚 ── */
   .footer {
     text-align: center;
-    padding: 20px;
+    padding: 24px;
     font-size: 12px;
-    color: #aaa;
+    color: #999;
     border-top: 1px solid #f0f0f0;
+    background: #fafbfc;
   }
 
-  /* ── 打印优化 ── */
+  /* ── 打印 ── */
   @media print {
     body { background: #fff; padding: 0; }
-    .resume { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .resume { box-shadow: none; border-radius: 0; max-width: 100%; margin: 0; }
     .header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .badge { background: rgba(255,255,255,0.15) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .skill-bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .unique-value { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .proj-result { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .salary-note { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { padding: 0; margin: 0; }
-    .body { padding: 30px 50px; }
-    .header { padding: 40px 50px 30px; }
+    .badge, .skill-tag, .exp-role, .proj-role, .proj-result, .edu-degree,
+    .salary-note, .unique-value, .exp-note, .summary-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .nav-float, .print-btn { display: none !important; }
+    .skill-bar-fill { width: var(--w) !important; }
     .section { page-break-inside: avoid; }
+    @page { margin: 1.2cm; }
   }
 
   @media (max-width: 600px) {
     .header { padding: 30px 20px; }
+    .header h1 { font-size: 28px; }
     .body { padding: 25px 20px; }
-    .header .contact-row { flex-direction: column; gap: 6px; }
-    .exp-header { flex-direction: column; }
-    .skill-block { flex-direction: column; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .skill-blocks { grid-template-columns: 1fr; }
+    .intent-cards { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- 浮动导航 -->
+<div class="nav-float">
+  <a href="#intro"><i class="fas fa-user"></i></a>
+  <a href="#intent"><i class="fas fa-bullseye"></i></a>
+  <a href="#skills"><i class="fas fa-chart-bar"></i></a>
+  <a href="#experience"><i class="fas fa-briefcase"></i></a>
+  <a href="#projects"><i class="fas fa-code-branch"></i></a>
+  <a href="#education"><i class="fas fa-graduation-cap"></i></a>
+</div>
+
+<!-- 打印按钮 -->
+<button class="print-btn" onclick="window.print()" title="打印/导出PDF">
+  <i class="fas fa-print"></i>
+</button>
+
 <div class="resume">
 
   <!-- ═══ 头部 ═══ -->
-  <div class="header">
-    <h1>蔡梦杰</h1>
-    <div class="subtitle">ERP信息化专家 · 弱电智能化项目经理 · AI工具落地实践者</div>
-    <div class="contact-row">
-      <span>📞 180****2933</span>
-      <span>📧 25****46@qq.com</span>
-      <span>📍 云南·曲靖</span>
-      <span>🕐 在职-看机会</span>
-      <span>🏆 15年经验</span>
-    </div>
-    <div class="badges">
-      <span class="badge">信息系统项目管理师</span>
-      <span class="badge">用友ERP认证（财务+供应链）</span>
-      <span class="badge">曲靖合力2018优秀员工</span>
+  <div class="header" id="intro">
+    <div class="header-content">
+      <h1>蔡梦杰</h1>
+      <div class="subtitle">ERP信息化专家 · 弱电智能化项目经理 · AI工具落地实践者</div>
+      <div class="divider"></div>
+      <div class="contact-grid">
+        <div class="item"><i class="fas fa-phone"></i> 180****2933</div>
+        <div class="item"><i class="fas fa-envelope"></i> 25****46@qq.com</div>
+        <div class="item"><i class="fas fa-map-marker-alt"></i> 云南·曲靖</div>
+        <div class="item"><i class="fas fa-clock"></i> 在职-看机会</div>
+        <div class="item"><i class="fas fa-star"></i> 15年经验</div>
+        <div class="item"><i class="fas fa-globe"></i> 简历 · 打印版</div>
+      </div>
+      <div class="badges">
+        <span class="badge">🏆 信息系统项目管理师</span>
+        <span class="badge">🏆 用友ERP认证（财务+供应链）</span>
+        <span class="badge">🏆 曲靖合力2018优秀员工</span>
+      </div>
     </div>
   </div>
 
   <div class="body">
 
     <!-- ═══ 求职意向 ═══ -->
-    <div class="section">
-      <div class="section-title"><span class="icon">🎯</span> 求职意向</div>
-      <table class="intent-table">
-        <tr><th width="100">方向</th><th>职位</th><th width="140">期望薪资</th></tr>
-        <tr>
-          <td>信息化/数字化</td>
-          <td>运维工程师 / ERP实施顾问</td>
-          <td><span class="highlight-salary">8,000-12,000元/月</span></td>
-        </tr>
-        <tr>
-          <td>智能化工程</td>
-          <td>弱电/网络工程师</td>
-          <td>7,000-10,000元/月</td>
-        </tr>
-        <tr>
-          <td>AI应用开发</td>
-          <td>AI工具开发 / 视频剪辑师</td>
-          <td>6,000-10,000元/月</td>
-        </tr>
-      </table>
+    <div class="section" id="intent">
+      <div class="section-title"><i class="fas fa-bullseye"></i> 求职意向</div>
+      <div class="intent-cards">
+        <div class="intent-card">
+          <div class="dir">📋 信息化 / 数字化</div>
+          <div class="pos">运维工程师 / ERP实施顾问</div>
+          <div class="sal">8,000 - 12,000</div>
+          <div style="font-size:12px;color:#999;margin-top:4px">元/月</div>
+        </div>
+        <div class="intent-card">
+          <div class="dir">🏗️ 智能化工程</div>
+          <div class="pos">弱电工程师 / 网络工程师</div>
+          <div class="sal" style="color:#555">7,000 - 10,000</div>
+          <div style="font-size:12px;color:#999;margin-top:4px">元/月</div>
+        </div>
+        <div class="intent-card">
+          <div class="dir">🤖 AI应用开发</div>
+          <div class="pos">AI工具开发 / 视频剪辑师</div>
+          <div class="sal" style="color:#555">6,000 - 10,000</div>
+          <div style="font-size:12px;color:#999;margin-top:4px">元/月</div>
+        </div>
+      </div>
       <div class="salary-note">
-        💡 <strong>建议薪资定位 8K-12K：</strong>15年经验+ERP+弱电+AI三合一能力在曲靖市场是稀缺资源，不要低估自己。
+        <i class="fas fa-lightbulb"></i> <strong>建议薪资定位 8K-12K：</strong>15年经验 + ERP + 弱电 + AI 三合一能力在曲靖市场是稀缺资源，不要低估自己。
       </div>
     </div>
 
-    <!-- ═══ 能力矩阵 ═══ -->
-    <div class="section">
-      <div class="section-title"><span class="icon">📊</span> 核心能力矩阵</div>
+    <!-- ═══ 核心能力 ═══ -->
+    <div class="section" id="skills">
+      <div class="section-title"><i class="fas fa-chart-bar"></i> 核心能力矩阵</div>
 
       <div class="skill-bar-group">
         <div class="skill-bar-label">
-          <span class="name">ERP信息化（用友/金蝶/OA）</span>
+          <span class="name"><i class="fas fa-database" style="color:#0f3460;width:18px"></i> ERP信息化</span>
           <span class="years">12年 · 10+项目</span>
         </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" style="width:95%;--w:95%"></div>
+        </div>
       </div>
       <div class="skill-bar-group">
         <div class="skill-bar-label">
-          <span class="name">弱电智能化（海康/大华/H3C/华为）</span>
+          <span class="name"><i class="fas fa-building" style="color:#0f3460;width:18px"></i> 弱电智能化</span>
           <span class="years">10年 · 10+大型园区</span>
         </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" style="width:90%;--w:90%"></div>
+        </div>
       </div>
       <div class="skill-bar-group">
         <div class="skill-bar-label">
-          <span class="name">基础运维（Windows/Linux/网络）</span>
+          <span class="name"><i class="fas fa-server" style="color:#0f3460;width:18px"></i> 基础运维 · 网络架构</span>
           <span class="years">15年</span>
         </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:98%"></div></div>
-      </div>
-      <div class="skill-bar-group">
-        <div class="skill-bar-label">
-          <span class="name">AI落地应用（ComfyUI/Ollama/Cursor）</span>
-          <span class="years">2年（前沿方向）</span>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" style="width:98%;--w:98%"></div>
         </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
       </div>
       <div class="skill-bar-group">
         <div class="skill-bar-label">
-          <span class="name">云平台（IaaS/SaaS/PaaS）</span>
+          <span class="name"><i class="fas fa-robot" style="color:#0f3460;width:18px"></i> AI落地应用</span>
+          <span class="years">2年 · 前沿方向</span>
+        </div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" style="width:70%;--w:70%"></div>
+        </div>
+      </div>
+      <div class="skill-bar-group">
+        <div class="skill-bar-label">
+          <span class="name"><i class="fas fa-cloud" style="color:#0f3460;width:18px"></i> 云平台</span>
           <span class="years">5年</span>
         </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" style="width:75%;--w:75%"></div>
+        </div>
       </div>
 
-      <div class="skill-tags" style="margin-top:18px">
+      <div class="skill-tags-wrap">
         <span class="skill-tag">金蝶云星空</span>
         <span class="skill-tag">用友U8/T6</span>
         <span class="skill-tag">道一云OA</span>
@@ -496,134 +794,144 @@
         <span class="skill-tag">VS Code AI</span>
         <span class="skill-tag">AD域控</span>
         <span class="skill-tag">Linux(Ubuntu)</span>
+        <span class="skill-tag">防火墙</span>
+        <span class="skill-tag">AC+AP</span>
       </div>
 
       <div class="unique-value">
-        <span class="fire">🔥</span> <strong>稀缺组合：ERP业务理解 + 弱电工程管理 + AI工具落地</strong>
+        <strong>🔥 稀缺组合：ERP业务理解 + 弱电工程管理 + AI工具落地</strong>
         <p>大部分IT人能管系统但不理解业务，大部分业务人不懂技术。你既懂企业核心流程（财务/供应链），又能管智能化弱电工程，还能用AI工具提效——这个三角在曲靖市场很难找到第二个人。</p>
       </div>
     </div>
 
     <!-- ═══ 工作经历 ═══ -->
-    <div class="section">
-      <div class="section-title"><span class="icon">💼</span> 工作经历</div>
+    <div class="section" id="experience">
+      <div class="section-title"><i class="fas fa-briefcase"></i> 工作经历</div>
 
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="company">曲靖市启创信达商贸有限公司</span>
-          <span class="role">弱电项目经理</span>
-          <span class="date">2025.01 — 至今</span>
-          <span class="salary">5,000元/月</span>
-        </div>
-        <ul class="exp-desc">
-          <li>主导建筑智能化系统（安防监控、综合布线、楼宇自控）方案设计、图纸深化、预算编制，管理项目团队10人</li>
-          <li>建立风险预警机制，通过供应商谈判及材料选型优化节约成本，项目零重大事故</li>
-          <li>组织竣工验收，移交系统测试报告、操作手册，建立售后响应机制</li>
-          <li>制定《弱电施工安全规范》等8项制度，主导团队技能培训，提高验收合格率</li>
-        </ul>
-      </div>
+      <div class="timeline">
 
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="company">曲靖跃安安全技术服务有限公司</span>
-          <span class="role">创业合伙人</span>
-          <span class="date">2024.01 — 2024.12</span>
-          <span class="salary">10,000元/月</span>
+        <div class="timeline-item">
+          <div class="exp-header">
+            <span class="exp-company">曲靖市启创信达商贸有限公司</span>
+            <span class="exp-role">弱电项目经理</span>
+            <span class="exp-date">2025.01 — 至今</span>
+            <span class="exp-salary">5,000元/月</span>
+          </div>
+          <ul class="exp-desc">
+            <li>主导建筑智能化系统（安防监控、综合布线、楼宇自控）方案设计、图纸深化、预算编制，管理项目团队10人</li>
+            <li>建立风险预警机制，通过供应商谈判及材料选型优化节约成本，项目零重大事故</li>
+            <li>组织竣工验收，移交系统测试报告、操作手册，建立售后响应机制</li>
+            <li>制定《弱电施工安全规范》等8项制度，主导团队技能培训，提高验收合格率</li>
+          </ul>
         </div>
-        <ul class="exp-desc">
-          <li>独立负责公司全面运营管理、应收应付账款管理</li>
-          <li>制定招生计划与培训排期，优化学员考试通过率</li>
-          <li>开拓上游培训学校资源，拓展培训科目品类</li>
-          <li>管理下游招生团队，统筹培训考试政策宣传</li>
-        </ul>
-      </div>
 
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="company">曲靖合力</span>
-          <span class="role">ERP实施顾问</span>
-          <span class="date">约 2010 — 2023</span>
+        <div class="timeline-item">
+          <div class="exp-header">
+            <span class="exp-company">曲靖跃安安全技术服务有限公司</span>
+            <span class="exp-role">创业合伙人</span>
+            <span class="exp-date">2024.01 — 2024.12</span>
+            <span class="exp-salary">10,000元/月</span>
+          </div>
+          <ul class="exp-desc">
+            <li>独立负责公司全面运营管理、应收应付账款管理</li>
+            <li>制定招生计划与培训排期，优化学员考试通过率</li>
+            <li>开拓上游培训学校资源，拓展培训科目品类</li>
+            <li>管理下游招生团队，统筹培训考试政策宣传</li>
+          </ul>
         </div>
-        <div class="exp-note">
-          📌 12年ERP实施经验，累计10+个中大型项目实施交付。客户覆盖制造、商贸、财务、供应链、HR等多个领域。
+
+        <div class="timeline-item">
+          <div class="exp-header">
+            <span class="exp-company">曲靖合力</span>
+            <span class="exp-role">ERP实施顾问</span>
+            <span class="exp-date">约 2010 — 2023</span>
+          </div>
+          <div class="exp-note">
+            📌 12年ERP实施经验，累计10+个中大型项目实施交付。客户覆盖制造、商贸、财务、供应链、HR等多个领域。
+          </div>
         </div>
+
       </div>
     </div>
 
     <!-- ═══ 重点项目 ═══ -->
-    <div class="section">
-      <div class="section-title"><span class="icon">🔧</span> 重点项目</div>
+    <div class="section" id="projects">
+      <div class="section-title"><i class="fas fa-code-branch"></i> 重点项目</div>
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">🏭 华祥科技 · ERP+WMS+OA 一体化项目</span>
-          <span class="proj-role">实施负责人</span>
-          <span class="proj-date">2023.11 — 至今</span>
-        </div>
-        <ul class="proj-desc">
-          <li>金蝶云星空ERP升级：需求调研→方案确定→数据整理→上线测试→运维</li>
-          <li>WMS系统：ERP接口需求梳理、实施费用预算编制</li>
-          <li>道一云OA开发：部门需求梳理、应用表单及流程设计、数据可视化模型设计</li>
-        </ul>
-        <span class="proj-result">✅ 物流运作效率提升20%</span>
-      </div>
+      <div class="proj-grid">
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">🏢 华祥科技 · 新能源建设FP弱电工程</span>
-          <span class="proj-role">甲方项目工程师</span>
-          <span class="proj-date">2023.06 — 至今</span>
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🏭 ERP+WMS+OA 一体化</span>
+            <span class="proj-role">实施负责人</span>
+            <span class="proj-date">2023.11 — 至今</span>
+          </div>
+          <ul class="proj-desc">
+            <li>金蝶云星空ERP升级：需求调研→方案确定→上线测试→运维</li>
+            <li>WMS系统：ERP接口需求梳理、费用预算编制</li>
+            <li>道一云OA开发：表单流程设计、数据可视化模型</li>
+          </ul>
+          <span class="proj-result">✅ 物流效率提升20%</span>
         </div>
-        <ul class="proj-desc">
-          <li>需求调研，优化设计方案</li>
-          <li>跟进施工质量与图纸一致性，优化不合理设计</li>
-          <li>控制项目成本，检查违规作业，签证确认变更</li>
-          <li>参与验收与结算</li>
-        </ul>
-        <span class="proj-result">✅ 成本较预算减少10%，较一期建设成本减少50%</span>
-      </div>
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">🏛️ 富康城 · 艺术中心弱电建设</span>
-          <span class="proj-role">甲方项目工程师</span>
-          <span class="proj-date">2019.04 — 2019.12</span>
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🏢 新能源FP弱电工程</span>
+            <span class="proj-role">甲方项目工程师</span>
+            <span class="proj-date">2023.06 — 至今</span>
+          </div>
+          <ul class="proj-desc">
+            <li>需求调研、设计方案优化</li>
+            <li>施工质量管控、成本控制、变更签证</li>
+            <li>验收与结算</li>
+          </ul>
+          <span class="proj-result">✅ 成本减少10%，较一期减少50%</span>
         </div>
-        <ul class="proj-desc">
-          <li>需求调研→方案优化→过程跟进→成本控制→变更签证→验收结算</li>
-        </ul>
-      </div>
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">🏭 陆良福牌彩印厂 · 用友U8财务供应链实施</span>
-          <span class="proj-role">ERP实施顾问</span>
-          <span class="proj-date">2013.12 — 2014.01</span>
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🏛️ 富康城艺术中心弱电</span>
+            <span class="proj-role">甲方项目工程师</span>
+            <span class="proj-date">2019.04 — 2019.12</span>
+          </div>
+          <ul class="proj-desc">
+            <li>需求调研→方案优化→过程跟进→成本控制→验收结算</li>
+          </ul>
         </div>
-        <ul class="proj-desc">
-          <li>应用及数据库服务器安装、需求调研、原始数据导入与升级</li>
-          <li>会计科目设计、物料档案整理、报表设计、客户端配置</li>
-        </ul>
-        <span class="proj-result">✅ 打通部门数据穿透性，实现财务/采购/库存高效整合</span>
-      </div>
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">⚡ 中翼鼎东白水电厂 · T6财务供应链实施</span>
-          <span class="proj-role">ERP实施顾问</span>
-          <span class="proj-date">2013.11 — 2013.12</span>
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">🏭 陆良福牌彩印厂 · 用友U8</span>
+            <span class="proj-role">ERP实施顾问</span>
+            <span class="proj-date">2013.12 — 2014.01</span>
+          </div>
+          <ul class="proj-desc">
+            <li>服务器部署、数据导入、会计科目设计</li>
+            <li>物料档案整理、报表设计、客户端配置</li>
+          </ul>
+          <span class="proj-result">✅ 打通部门数据穿透性</span>
         </div>
-        <ul class="proj-desc">
-          <li>服务器部署、需求调研、数据导入、会计科目设计、报表设计、客户端配置</li>
-        </ul>
-        <span class="proj-result">✅ 实现总部+分公司远程数据处理与财务数据远程监控</span>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">⚡ 中翼鼎东白水电厂 · T6</span>
+            <span class="proj-role">ERP实施顾问</span>
+            <span class="proj-date">2013.11 — 2013.12</span>
+          </div>
+          <ul class="proj-desc">
+            <li>服务器部署、需求调研、数据导入</li>
+            <li>会计科目设计、报表设计</li>
+          </ul>
+          <span class="proj-result">✅ 总部+分公司远程财务监控</span>
+        </div>
+
       </div>
     </div>
 
     <!-- ═══ 教育背景 ═══ -->
-    <div class="section">
-      <div class="section-title"><span class="icon">🎓</span> 教育背景</div>
-      <div class="edu-row">
+    <div class="section" id="education">
+      <div class="section-title"><i class="fas fa-graduation-cap"></i> 教育背景</div>
+      <div class="edu-card">
         <span class="edu-school">楚雄师范学院</span>
         <span class="edu-major">信息与计算科学</span>
         <span class="edu-degree">本科</span>
@@ -633,22 +941,20 @@
 
     <!-- ═══ 专业技能 ═══ -->
     <div class="section">
-      <div class="section-title"><span class="icon">🛠️</span> 专业技能</div>
-
-      <div class="skill-block">
-        <div class="col">
-          <h4>📋 企业信息化</h4>
+      <div class="section-title"><i class="fas fa-tools"></i> 专业技能</div>
+      <div class="skill-blocks">
+        <div class="skill-block">
+          <h4><i class="fas fa-file-invoice"></i> 企业信息化</h4>
           <div class="tags">
             <span class="tag-item">金蝶云星空</span>
             <span class="tag-item">用友U8/T6</span>
             <span class="tag-item">道一云OA</span>
             <span class="tag-item">WMS系统</span>
             <span class="tag-item">财务供应链HR</span>
-            <span class="tag-item">ERP实施方法论</span>
           </div>
         </div>
-        <div class="col">
-          <h4>🏗️ 弱电智能化</h4>
+        <div class="skill-block">
+          <h4><i class="fas fa-shield-alt"></i> 弱电智能化</h4>
           <div class="tags">
             <span class="tag-item">海康威视</span>
             <span class="tag-item">大华</span>
@@ -657,16 +963,12 @@
             <span class="tag-item">深信服</span>
             <span class="tag-item">综合布线</span>
             <span class="tag-item">安防监控</span>
-            <span class="tag-item">楼宇自控</span>
           </div>
         </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="col">
-          <h4>🌐 网络与基础架构</h4>
+        <div class="skill-block">
+          <h4><i class="fas fa-network-wired"></i> 网络与基础架构</h4>
           <div class="tags">
-            <span class="tag-item">交换机配置</span>
+            <span class="tag-item">交换机</span>
             <span class="tag-item">防火墙</span>
             <span class="tag-item">上网行为管理</span>
             <span class="tag-item">AC+AP</span>
@@ -675,8 +977,8 @@
             <span class="tag-item">Linux(Ubuntu)</span>
           </div>
         </div>
-        <div class="col">
-          <h4>🤖 AI与前沿技术</h4>
+        <div class="skill-block">
+          <h4><i class="fas fa-robot"></i> AI与前沿技术</h4>
           <div class="tags">
             <span class="tag-item">ComfyUI</span>
             <span class="tag-item">Stable Diffusion</span>
@@ -684,9 +986,9 @@
             <span class="tag-item">LobeChat</span>
             <span class="tag-item">OpenWebUI</span>
             <span class="tag-item">Cursor</span>
-            <span class="tag-item">VS Code AI开发</span>
-            <span class="tag-item">LLM API调用</span>
-            <span class="tag-item">开源模型私有化部署</span>
+            <span class="tag-item">VS Code AI</span>
+            <span class="tag-item">LLM API</span>
+            <span class="tag-item">开源模型私有化</span>
           </div>
         </div>
       </div>
@@ -694,28 +996,31 @@
 
     <!-- ═══ 自我评价 ═══ -->
     <div class="section">
-      <div class="section-title"><span class="icon">📝</span> 自我评价</div>
-      <div class="summary-text">
-        15年信息化领域老兵，从ERP实施起步，一路扩展到弱电智能化工程管理，再到AI工具的落地应用。<br><br>
-        不是单纯的"运维"，而是一个<span class="highlight">能理解业务流程、能管工程、能用AI提效的复合型IT人</span>。<br><br>
-        我知道财务数据怎么跑、知道摄像头怎么装、知道大模型怎么部署——能把这些串起来解决实际问题的人，比单点专精的人稀缺得多。<br><br>
-        正在寻找一个能让我把 <span class="highlight">信息化+智能化+AI化</span> 三块能力都用上的平台。
+      <div class="section-title"><i class="fas fa-quote-left"></i> 自我评价</div>
+      <div class="summary-box">
+        <div class="summary-text">
+          15年信息化领域老兵，从ERP实施起步，一路扩展到弱电智能化工程管理，再到AI工具的落地应用。<br><br>
+          不是单纯的"运维"，而是一个 <span class="hl">能理解业务流程、能管工程、能用AI提效的复合型IT人</span>。<br><br>
+          我知道财务数据怎么跑、知道摄像头怎么装、知道大模型怎么部署——能把这些串起来解决实际问题的人，比单点专精的人稀缺得多。<br><br>
+          正在寻找一个能让我把 <span class="hl">信息化 + 智能化 + AI化</span> 三块能力都用上的平台。
+        </div>
       </div>
     </div>
 
     <!-- ═══ 语言能力 ═══ -->
     <div class="section">
-      <div class="section-title"><span class="icon">🌐</span> 语言能力</div>
+      <div class="section-title"><i class="fas fa-language"></i> 语言能力</div>
       <div class="lang-row">
-        <span>汉语 — 听说读写熟练</span>
-        <span class="cert">普通话二级乙等</span>
+        <span><i class="fas fa-check-circle" style="color:#52c41a"></i> 汉语 — 听说读写熟练</span>
+        <span class="cert"><i class="fas fa-certificate"></i> 普通话二级乙等</span>
       </div>
     </div>
 
   </div>
 
   <div class="footer">
-    简历 · 蔡梦杰 · 更新于 2026年6月 &nbsp;|&nbsp; 打印版
+    <i class="far fa-copyright"></i> 蔡梦杰 · 简历 · 更新于 2026年6月
+    &nbsp;·&nbsp; <i class="fas fa-print"></i> 点击右下角打印按钮导出PDF
   </div>
 
 </div>
